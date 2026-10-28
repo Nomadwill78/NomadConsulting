@@ -148,6 +148,29 @@
     .pilot-note { max-width: var(--page-width); margin: 18px auto 0; color: var(--muted); text-align: center; }
     .pilot-note strong { color: var(--ink); }
 
+    .button-pilot { margin-top: 22px; color: var(--green-deep); background: var(--gold-pale); }
+    .button-pilot:hover { background: #f8ecd4; }
+    .inquiry-panel { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: 42px; margin-top: 36px; padding: 42px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--white); scroll-margin-top: 24px; }
+    .inquiry-copy h3 { margin: 15px 0 14px; font-size: 30px; line-height: 1.2; letter-spacing: -.035em; }
+    .inquiry-copy p { margin-bottom: 0; color: var(--muted); }
+    .inquiry-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    .form-field { min-width: 0; }
+    .form-field label { display: block; margin-bottom: 7px; font-weight: 700; line-height: 1.45; }
+    .form-field label span { color: var(--muted); font-weight: 400; }
+    .form-field input, .form-field textarea { display: block; width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #a9bab0; border-radius: 10px; color: var(--ink); background: #fff; font: inherit; }
+    .form-field textarea { min-height: 150px; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #667870; opacity: 1; }
+    .form-wide { grid-column: 1 / -1; }
+    .form-privacy, .form-help { margin: 0; color: var(--muted); font-size: 16px; }
+    .form-privacy a { color: var(--green); text-underline-offset: 3px; }
+    .form-help { margin-top: 12px; }
+    .form-trap { display: none; }
+    button.button { border: 0; font-family: inherit; font-size: 16px; line-height: 1.65; cursor: pointer; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .inquiry-success { margin-bottom: 24px; padding: 20px; border: 1px solid #9bb6a4; border-radius: 14px; background: var(--green-pale); }
+    .inquiry-success strong { display: block; margin-bottom: 6px; font-size: 20px; }
+    .inquiry-success p { margin: 0; color: var(--ink-soft); }
+
     .footer { padding: 27px 0 34px; border-top: 1px solid var(--line); }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
     .footer p { margin: 0; color: var(--muted); }
@@ -160,6 +183,7 @@
       .visual-wrap { min-height: 440px; overflow: hidden; }
       .fit-layout { grid-template-columns: 1fr; gap: 35px; }
       .pilot-panel { grid-template-columns: 1fr auto; padding: 38px; }
+      .inquiry-panel { grid-template-columns: 1fr; gap: 28px; padding: 36px; }
     }
     @media (max-width: 680px) {
       .wrap { width: min(100% - 34px, var(--page-width)); }
@@ -197,6 +221,9 @@
       .pilot-badge { width: 128px; height: 128px; }
       .pilot-badge strong { font-size: 29px; }
       .pilot-note { padding-inline: 4px; text-align: left; }
+      .inquiry-panel { margin-top: 28px; padding: 26px 22px; }
+      .inquiry-form { grid-template-columns: 1fr; }
+      .inquiry-copy h3 { font-size: 28px; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
     }
 
@@ -363,10 +390,55 @@
             <div class="eyebrow">Pilot opportunity</div>
             <h2>Test a more focused approach to funder research.</h2>
             <p>Nomad Consulting is inviting five nonprofit organizations to explore a paid pilot of the funder-fit research sprint. The scope and fee will be agreed before work begins.</p>
+            <a class="button button-pilot" href="#inquiry">Ask about the paid pilot</a>
           </div>
           <div class="pilot-badge"><div><strong>5</strong><span>nonprofit pilot partners</span></div></div>
         </div>
-        <p class="pilot-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome. Pilot conversations can begin through your existing Nomad Consulting contact channel.</p>
+        <p class="pilot-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome.</p>
+        <div class="inquiry-panel" id="inquiry">
+          <div class="inquiry-copy">
+            <div class="eyebrow">Start a conversation</div>
+            <h3>Tell us about your nonprofit.</h3>
+            <p>Share your program focus and the funding-research question you want to answer. Nomad Consulting will reply to the email address you provide. Submitting an inquiry does not commit you to a paid service.</p>
+          </div>
+          <div>
+            <div class="inquiry-success" id="inquiry-success" role="status" tabindex="-1" hidden>
+              <strong>Thanks. Your inquiry has been sent.</strong>
+              <p>Nomad Consulting will reply to the email address you provided.</p>
+            </div>
+            <form class="inquiry-form" action="https://formsubmit.co/95d26416330d4a2dac7ac735d8ad22d0" method="POST" aria-label="Funder-fit pilot inquiry">
+              <input type="hidden" name="_subject" value="New funder-fit pilot inquiry | Nomad Consulting">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://nomad-funder-fit-sprint.vercel.app/?inquiry=sent#inquiry">
+              <div class="form-trap" aria-hidden="true"><label>Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+              <div class="form-field">
+                <label for="inquiry-name">Your name</label>
+                <input id="inquiry-name" type="text" name="name" autocomplete="name" maxlength="100" required>
+              </div>
+              <div class="form-field">
+                <label for="inquiry-organization">Nonprofit name</label>
+                <input id="inquiry-organization" type="text" name="organization" autocomplete="organization" maxlength="150" required>
+              </div>
+              <div class="form-field">
+                <label for="inquiry-email">Reply-to email</label>
+                <input id="inquiry-email" type="email" name="email" autocomplete="email" maxlength="254" required>
+              </div>
+              <div class="form-field">
+                <label for="inquiry-area">Service area <span>(optional)</span></label>
+                <input id="inquiry-area" type="text" name="service_area" maxlength="160" placeholder="City, region, or areas served">
+              </div>
+              <div class="form-field form-wide">
+                <label for="inquiry-message">What would you like the sprint to help with?</label>
+                <textarea id="inquiry-message" name="message" rows="5" maxlength="2000" required placeholder="Briefly describe your program focus or funding-research question."></textarea>
+              </div>
+              <p class="form-privacy form-wide">Your message is processed by <a href="https://formsubmit.co/documentation" target="_blank" rel="noopener noreferrer">FormSubmit</a>, which retains submissions for 30 days, and delivered to Nomad Consulting's designated inbox. Please do not include sensitive personal or client information.</p>
+              <div class="form-wide">
+                <button class="button button-primary" type="submit">Send pilot inquiry</button>
+                <p class="form-help">You may be asked to complete a brief spam check before your message is sent.</p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -380,5 +452,13 @@
       <p>Practical research. Clearer fundraising decisions.</p>
     </div>
   </footer>
+  <script>
+    if (new URLSearchParams(window.location.search).get('inquiry') === 'sent') {
+      const notice = document.getElementById('inquiry-success');
+      notice.hidden = false;
+      notice.focus({ preventScroll: true });
+      window.history.replaceState({}, '', window.location.pathname + '#inquiry');
+    }
+  </script>
 </body>
 </html>
