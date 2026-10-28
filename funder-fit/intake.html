@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#143C72">
+  <meta name="description" content="Complete the Funder-Fit client intake questionnaire for your one-program-area funder research package.">
+  <title>Funder-Fit Client Intake | Nomad Consulting</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #143C72;
+      --white: #FFFFFF;
+      --ink: #143C72;
+      --muted: rgba(20, 60, 114, .82);
+      --line: rgba(20, 60, 114, .22);
+      --soft: rgba(20, 60, 114, .045);
+      --shadow: 0 20px 56px rgba(20, 60, 114, .12);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --page-width: 1000px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-width: 320px;
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; }
+    .topbar { padding: 12px 0; color: var(--white); background: var(--navy); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 92px; }
+    .brand { display: inline-flex; flex: 0 0 auto; align-items: center; text-decoration: none; }
+    .brand img { display: block; width: 82px; height: auto; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-links a { color: var(--white); font-weight: 700; text-underline-offset: 4px; }
+    .nav-links .nav-cta { display: inline-flex; min-height: 48px; align-items: center; padding: 9px 17px; border: 1px solid var(--white); border-radius: 999px; color: var(--navy); background: var(--white); text-decoration: none; }
+    .main { padding: 48px 0 84px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 11px; color: var(--navy); font-weight: 750; letter-spacing: .075em; text-transform: uppercase; }
+    .eyebrow::before { display: inline-block; width: 28px; height: 2px; background: var(--navy); content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 840px; margin: 15px 0; font-size: clamp(38px, 5vw, 58px); line-height: 1.08; letter-spacing: -.045em; }
+    h2 { margin: 0 0 8px; font-size: clamp(26px, 3.3vw, 34px); line-height: 1.2; letter-spacing: -.03em; }
+    p { margin-bottom: 16px; }
+    .intro { max-width: 850px; margin-bottom: 26px; color: var(--muted); font-size: 18px; }
+    .already-purchased { max-width: 850px; margin: 0 0 20px; color: var(--muted); }
+    .already-purchased a { color: var(--navy); font-weight: 700; text-underline-offset: 3px; }
+    .package-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 28px 0; }
+    .package-card { min-height: 120px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--soft); }
+    .package-card strong { display: block; margin-bottom: 4px; font-size: 18px; }
+    .package-card span { display: block; color: var(--muted); }
+    .timing-note { margin: 0 0 28px; padding: 18px 20px; border-left: 5px solid var(--navy); border-radius: 10px; background: var(--soft); }
+    .timing-note strong { color: var(--navy); }
+    .draft-note { margin: -10px 0 22px; padding: 15px 18px; border: 1px dashed var(--line); border-radius: 10px; color: var(--muted); }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
+    .section-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 7px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--navy); background: var(--white); font-weight: 700; text-decoration: none; }
+    .section-nav a:hover { background: var(--soft); }
+    .success { margin: 0 0 24px; padding: 20px; border: 1px solid var(--navy); border-radius: 14px; background: var(--soft); }
+    .success strong { display: block; margin-bottom: 4px; font-size: 20px; }
+    .success p { margin: 0; }
+    [hidden] { display: none !important; }
+    .intake-card { padding: clamp(22px, 4vw, 42px); border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); }
+    .form-section { min-width: 0; margin: 0; padding: 30px 0; border: 0; border-top: 1px solid var(--line); }
+    .form-section:first-of-type { padding-top: 0; border-top: 0; }
+    .form-section legend { width: 100%; margin-bottom: 7px; padding: 0; font-size: clamp(23px, 3vw, 29px); font-weight: 760; line-height: 1.25; letter-spacing: -.025em; }
+    .section-intro { max-width: 820px; margin-bottom: 20px; color: var(--muted); }
+    .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+    .field { min-width: 0; }
+    .field-wide { grid-column: 1 / -1; }
+    .field label, .field-label { display: block; margin-bottom: 7px; font-weight: 700; line-height: 1.45; }
+    .optional { color: var(--muted); font-weight: 400; }
+    .field input:not([type="checkbox"]):not([type="file"]), .field textarea, .field select {
+      display: block;
+      width: 100%;
+      min-height: 52px;
+      padding: 11px 14px;
+      border: 1px solid var(--navy);
+      border-radius: 10px;
+      color: var(--navy);
+      background: var(--white);
+      font: inherit;
+    }
+    .field textarea { min-height: 118px; resize: vertical; }
+    .field textarea.large { min-height: 142px; }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(20, 60, 114, .72); opacity: 1; }
+    .field-hint { display: block; margin-top: 6px; color: var(--muted); }
+    .subfieldset { min-width: 0; margin: 24px 0 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; }
+    .subfieldset legend { width: auto; margin: 0; padding: 0 7px; font-size: 18px; font-weight: 750; letter-spacing: 0; }
+    .checkbox-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+    .checkbox-option { display: flex; min-height: 50px; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); }
+    .checkbox-option input[type="checkbox"] { flex: 0 0 auto; width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--navy); }
+    .checkbox-option span { line-height: 1.45; }
+    .scope-callout, .privacy-note { margin: 20px 0 0; padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+    .scope-callout strong, .privacy-note strong { display: block; margin-bottom: 5px; }
+    .scope-callout p, .privacy-note p { margin: 0; color: var(--muted); }
+    .terms-list { display: grid; gap: 12px; margin-top: 18px; }
+    .terms-list .checkbox-option { padding: 14px; }
+    .consent-required { color: var(--muted); }
+    .privacy-note { margin-top: 20px; }
+    .privacy-note a { color: var(--navy); font-weight: 700; text-underline-offset: 3px; }
+    .submit-row { margin-top: 26px; }
+    .button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; padding: 13px 22px; border: 0; border-radius: 999px; color: var(--white); background: var(--navy); box-shadow: 0 9px 22px rgba(20, 60, 114, .18); font: inherit; font-weight: 750; text-decoration: none; cursor: pointer; }
+    .button:hover { opacity: .9; }
+    .submit-help { margin: 12px 0 0; color: var(--muted); }
+    input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+    .topbar a:focus-visible, .footer a:focus-visible { outline-color: var(--white); }
+    .footer { padding: 26px 0 30px; color: var(--white); background: var(--navy); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer .brand img { width: 74px; }
+    .footer p { margin: 0; color: rgba(255, 255, 255, .9); }
+
+    @media (max-width: 850px) {
+      .package-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(var(--page-width), calc(100% - 32px)); }
+      .nav { min-height: 78px; }
+      .nav-links { gap: 12px; }
+      .nav-links > a:not(.nav-cta) { display: none; }
+      .nav-links .nav-cta { padding: 8px 13px; }
+      .main { padding: 34px 0 58px; }
+      .intro { font-size: 17px; }
+      .package-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+      .package-card { min-height: 136px; padding: 14px; }
+      .field-grid, .checkbox-grid { grid-template-columns: 1fr; }
+      .field-wide { grid-column: auto; }
+      .subfieldset { padding: 15px; }
+      .submit-row .button { width: 100%; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="/" aria-label="Nomad Consulting Funder-Fit home">
+        <img src="/assets/nomad-consulting-logo-white.png" alt="Nomad Consulting" width="190" height="213" decoding="async">
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="/">Funder-Fit overview</a>
+        <a class="nav-cta" href="https://buy.stripe.com/6oU7sN0PU2JO25M6HU8ww0h">Purchase for $697</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="wrap">
+      <div class="eyebrow">Funder-Fit client intake</div>
+      <h1>Tell us about your organization and program.</h1>
+      <p class="intro">Complete this questionnaire for the one-program-area Funder-Fit research package. The details help Nomad Consulting screen and rank funders against your mission, program, geography, eligibility, readiness, and practical constraints.</p>
+      <p class="already-purchased">This intake is for clients who purchased the package. <a href="/">Review the Funder-Fit service details</a> if you have questions before purchase.</p>
+
+      <div class="package-grid" aria-label="Funder-Fit package details">
+        <div class="package-card"><strong>Fee</strong><span>One-time package: $697</span></div>
+        <div class="package-card"><strong>Research scope</strong><span>One program area, up to 25 screened funders</span></div>
+        <div class="package-card"><strong>Deliverables</strong><span>Ranked prospect tracker with source links and fit notes, plus a concise report</span></div>
+        <div class="package-card"><strong>Boundaries</strong><span>Grant writing and submissions are excluded. Funding is not guaranteed.</span></div>
+      </div>
+
+      <div class="timing-note">
+        <strong>Timing and next steps</strong><br>
+        Nomad Consulting will confirm and lock the one-program-area scope within 1 business day after purchase. Please return this questionnaire and available materials within 3 business days. The 10-business-day delivery clock begins when the intake is complete.
+      </div>
+      <p class="draft-note"><strong>This form does not save a draft.</strong> Prepare longer responses and available files before you begin. If you leave or reload the page, you may need to re-enter information and select files again.</p>
+      <nav class="section-nav" aria-label="Questionnaire sections">
+        <a href="#organization">1. Organization</a>
+        <a href="#program">2. Program</a>
+        <a href="#readiness">3. Readiness</a>
+        <a href="#funding">4. Funding</a>
+        <a href="#materials">5. Materials</a>
+        <a href="#confirmation">6. Confirmation</a>
+      </nav>
+
+      <div id="submission-success" class="success" role="status" tabindex="-1" hidden>
+        <strong>Your intake has been submitted.</strong>
+        <p>Thank you. Nomad Consulting will review the information and confirm the one-program-area scope within 1 business day after purchase.</p>
+      </div>
+
+      <form class="intake-card" id="client-intake-form" action="https://formsubmit.co/95d26416330d4a2dac7ac735d8ad22d0" method="POST" aria-label="Funder-Fit client intake questionnaire">
+        <input type="hidden" name="_subject" value="Funder-Fit client intake | Nomad Consulting">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://nomad-funder-fit-sprint.vercel.app/intake.html?submitted=1#submission-success">
+        <input type="hidden" name="_url" value="https://nomad-funder-fit-sprint.vercel.app/intake.html">
+        <div class="form-trap" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;">
+          <label>Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label>
+        </div>
+
+        <fieldset class="form-section" id="organization">
+          <legend>1. Organization and primary contact</legend>
+          <p class="section-intro">Provide organization-level information. If a detail is not available, note that in the field rather than sharing sensitive personal or client information.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="legal-name">Legal organization name</label>
+              <input id="legal-name" name="Legal organization name" type="text" autocomplete="organization" maxlength="180" required>
+            </div>
+            <div class="field">
+              <label for="public-name">Public name, if different <span class="optional">(optional)</span></label>
+              <input id="public-name" name="Public name" type="text" maxlength="180">
+            </div>
+            <div class="field">
+              <label for="website">Organization website <span class="optional">(optional)</span></label>
+              <input id="website" name="Organization website" type="url" inputmode="url" placeholder="https://" maxlength="300">
+            </div>
+            <div class="field">
+              <label for="contact-name">Primary contact name and title</label>
+              <input id="contact-name" name="Primary contact name and title" type="text" autocomplete="name" maxlength="180" required>
+            </div>
+            <div class="field">
+              <label for="contact-email">Email address</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+            </div>
+            <div class="field">
+              <label for="purchase-email">Email used for the $697 purchase <span class="optional">(if different)</span></label>
+              <input id="purchase-email" name="Email used for the $697 purchase" type="email" autocomplete="email" maxlength="254">
+            </div>
+            <div class="field">
+              <label for="purchase-reference">Stripe receipt or payment reference <span class="optional">(if available)</span></label>
+              <input id="purchase-reference" name="Stripe receipt or payment reference" type="text" maxlength="180">
+            </div>
+            <div class="field">
+              <label for="contact-phone">Phone number <span class="optional">(optional)</span></label>
+              <input id="contact-phone" name="Phone number" type="tel" autocomplete="tel" maxlength="40">
+            </div>
+            <div class="field">
+              <label for="org-type">Organization type and current tax-exempt status</label>
+              <input id="org-type" name="Organization type and current tax-exempt status" type="text" maxlength="240" required placeholder="For example, nonprofit corporation, public entity, or fiscally sponsored project">
+            </div>
+            <div class="field">
+              <label for="incorporation-state">State of incorporation or registration</label>
+              <input id="incorporation-state" name="State of incorporation or registration" type="text" maxlength="100" required>
+            </div>
+            <div class="field field-wide">
+              <label for="mission">Mission statement or short description</label>
+              <textarea id="mission" name="Mission statement or short description" class="large" maxlength="5000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="communities">Communities and locations served</label>
+              <textarea id="communities" name="Communities and locations served" maxlength="3000" required></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section" id="program">
+          <legend>2. Program area to research</legend>
+          <p class="section-intro">Select one program area for this research package. If the organization has several priorities, name the single area that should lead this search.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="program-name">Program area name</label>
+              <input id="program-name" name="Program area name" type="text" maxlength="180" required>
+            </div>
+            <div class="field">
+              <label for="program-lead">Program lead and title <span class="optional">(optional)</span></label>
+              <input id="program-lead" name="Program lead and title" type="text" maxlength="180">
+            </div>
+            <div class="field field-wide">
+              <label for="program-description">Short program description</label>
+              <textarea id="program-description" name="Short program description" maxlength="5000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="community-need">Primary community need addressed</label>
+              <textarea id="community-need" name="Primary community need addressed" maxlength="3000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="activities">Core activities or services</label>
+              <textarea id="activities" name="Core activities or services" maxlength="3000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="beneficiaries">Who participates or benefits?</label>
+              <textarea id="beneficiaries" name="Who participates or benefits" maxlength="3000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="geography">Geographic footprint, including counties or cities</label>
+              <textarea id="geography" name="Geographic footprint including counties or cities" maxlength="3000" required></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="population">Population characteristics relevant to funder fit</label>
+              <textarea id="population" name="Population characteristics relevant to funder fit" maxlength="3000"></textarea>
+            </div>
+            <div class="field">
+              <label for="program-budget">Current annual program budget <span class="optional">(optional)</span></label>
+              <input id="program-budget" name="Current annual program budget" type="text" inputmode="decimal" maxlength="100" placeholder="Amount and currency, if known">
+            </div>
+            <div class="field">
+              <label for="amount-sought">Estimated amount sought from a funder <span class="optional">(optional)</span></label>
+              <input id="amount-sought" name="Estimated amount sought from a funder" type="text" inputmode="decimal" maxlength="100" placeholder="Amount and currency, if known">
+            </div>
+            <div class="field">
+              <label for="project-start">Expected project start date <span class="optional">(optional)</span></label>
+              <input id="project-start" name="Expected project start date" type="date">
+            </div>
+            <div class="field">
+              <label for="project-end">Expected project end date <span class="optional">(optional)</span></label>
+              <input id="project-end" name="Expected project end date" type="date">
+            </div>
+            <div class="field field-wide">
+              <label for="program-restrictions">Known program restrictions or exclusions <span class="optional">(optional)</span></label>
+              <textarea id="program-restrictions" name="Known program restrictions or exclusions" maxlength="3000"></textarea>
+            </div>
+          </div>
+
+          <fieldset class="subfieldset">
+            <legend>Program outcomes and proof points</legend>
+            <div class="field-grid">
+              <div class="field field-wide">
+                <label for="intended-outcomes">Most important intended outcomes</label>
+                <textarea id="intended-outcomes" name="Most important intended outcomes" maxlength="3000" required></textarea>
+              </div>
+              <div class="field field-wide">
+                <label for="tracked-outputs">Outputs or results tracked today <span class="optional">(optional)</span></label>
+                <textarea id="tracked-outputs" name="Outputs or results tracked today" maxlength="3000"></textarea>
+              </div>
+              <div class="field field-wide">
+                <label for="evidence">Evidence, evaluation, or success stories available <span class="optional">(optional)</span></label>
+                <textarea id="evidence" name="Evidence evaluation or success stories available" maxlength="3000"></textarea>
+              </div>
+              <div class="field field-wide">
+                <label for="evaluation-gaps">Gaps in data or evaluation capacity <span class="optional">(optional)</span></label>
+                <textarea id="evaluation-gaps" name="Gaps in data or evaluation capacity" maxlength="3000"></textarea>
+              </div>
+            </div>
+          </fieldset>
+        </fieldset>
+
+        <fieldset class="form-section" id="readiness">
+          <legend>3. Eligibility and organizational readiness</legend>
+          <p class="section-intro">Select all that apply. These details help establish practical eligibility and readiness context for the research.</p>
+          <fieldset class="subfieldset" style="margin-top:0">
+            <legend>Readiness indicators</legend>
+            <div class="checkbox-grid">
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Current IRS 501(c)(3) determination"><span>Current IRS 501(c)(3) determination</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Other nonprofit or public entity status"><span>Other nonprofit or public entity status</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Fiscal sponsor in place"><span>Fiscal sponsor in place</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Federal UEI and active SAM.gov registration, if applicable"><span>Federal UEI and active SAM.gov registration, if applicable</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Audited or reviewed financial statements available"><span>Audited or reviewed financial statements available</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Current organization and program budgets available"><span>Current organization and program budgets available</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Ability to meet match or cost-share requirements, if needed"><span>Ability to meet match or cost-share requirements, if needed</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Readiness indicators" value="Board-approved authority for grant requests"><span>Board-approved authority for grant requests</span></label>
+            </div>
+          </fieldset>
+          <div class="field-grid" style="margin-top:20px">
+            <div class="field">
+              <label for="fiscal-year">Fiscal year end <span class="optional">(optional)</span></label>
+              <input id="fiscal-year" name="Fiscal year end" type="text" maxlength="100" placeholder="Month and day, if known">
+            </div>
+            <div class="field">
+              <label for="annual-budget">Most recent annual operating budget <span class="optional">(optional)</span></label>
+              <input id="annual-budget" name="Most recent annual operating budget" type="text" inputmode="decimal" maxlength="100" placeholder="Amount and currency, if known">
+            </div>
+            <div class="field field-wide">
+              <label for="prior-awards">Prior awards relevant to this program <span class="optional">(optional)</span></label>
+              <textarea id="prior-awards" name="Prior awards relevant to this program" maxlength="3000"></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="funder-relationships">Existing relationships with likely funders <span class="optional">(optional)</span></label>
+              <textarea id="funder-relationships" name="Existing relationships with likely funders" maxlength="3000"></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="pending-applications">Current or pending applications that affect this search <span class="optional">(optional)</span></label>
+              <textarea id="pending-applications" name="Current or pending applications that affect this search" maxlength="3000"></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="readiness-limits">Known restrictions, compliance issues, or capacity limits <span class="optional">(optional)</span></label>
+              <textarea id="readiness-limits" name="Known restrictions compliance issues or capacity limits" maxlength="3000"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section" id="funding">
+          <legend>4. Funding preferences and practical constraints</legend>
+          <p class="section-intro">Select all purposes that fit and describe any practical award, timing, or prospect parameters the research should respect.</p>
+          <fieldset class="subfieldset" style="margin-top:0">
+            <legend>Preferred funding purpose</legend>
+            <div class="checkbox-grid">
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="Program or project support"><span>Program or project support</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="General operating support"><span>General operating support</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="Capacity building"><span>Capacity building</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="Equipment or capital"><span>Equipment or capital</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="Planning or pilot support"><span>Planning or pilot support</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Preferred funding purpose" value="Other purpose"><span>Other purpose</span></label>
+            </div>
+          </fieldset>
+          <div class="field-grid" style="margin-top:20px">
+            <div class="field">
+              <label for="min-award">Preferred minimum award <span class="optional">(optional)</span></label>
+              <input id="min-award" name="Preferred minimum award" type="text" inputmode="decimal" maxlength="100" placeholder="Amount and currency, if known">
+            </div>
+            <div class="field">
+              <label for="max-award">Preferred maximum award <span class="optional">(optional)</span></label>
+              <input id="max-award" name="Preferred maximum award" type="text" inputmode="decimal" maxlength="100" placeholder="Amount and currency, if known">
+            </div>
+            <div class="field">
+              <label for="earliest-start">Earliest workable start date <span class="optional">(optional)</span></label>
+              <input id="earliest-start" name="Earliest workable start date" type="date">
+            </div>
+            <div class="field">
+              <label for="decision-dates">Upcoming deadlines or internal decision dates <span class="optional">(optional)</span></label>
+              <input id="decision-dates" name="Upcoming deadlines or internal decision dates" type="text" maxlength="300" placeholder="List dates and what they relate to">
+            </div>
+            <div class="field field-wide">
+              <label for="exclude-funders">Funders or funding types to exclude, with reason <span class="optional">(optional)</span></label>
+              <textarea id="exclude-funders" name="Funders or funding types to exclude with reason" maxlength="3000"></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="other-constraints">Other constraints the research should respect <span class="optional">(optional)</span></label>
+              <textarea id="other-constraints" name="Other constraints the research should respect" maxlength="3000"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section" id="materials">
+          <legend>5. Helpful materials</legend>
+          <p class="section-intro">Share what is available. Missing documents do not automatically prevent research, but they may limit the evidence available for fit notes.</p>
+          <fieldset class="subfieldset" style="margin-top:0">
+            <legend>Materials available to share</legend>
+            <div class="checkbox-grid">
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Current IRS determination letter or status evidence"><span>Current IRS determination letter or status evidence</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Organization overview or current annual report"><span>Organization overview or current annual report</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Program description or one-page overview"><span>Program description or one-page overview</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Current operating budget and program budget"><span>Current operating budget and program budget</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Recent outcome or evaluation summary"><span>Recent outcome or evaluation summary</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Service-area map or list of counties and cities"><span>Service-area map or list of counties and cities</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Prior award list or current funder relationships"><span>Prior award list or current funder relationships</span></label>
+              <label class="checkbox-option"><input type="checkbox" name="Materials available to share" value="Other useful public organizational material"><span>Other useful public organizational material</span></label>
+            </div>
+          </fieldset>
+          <div class="field-grid" style="margin-top:20px">
+            <div class="field field-wide">
+              <p class="field-hint">This form is text-only and does not accept file attachments. List available documents or add viewable links below. If non-public supporting documents are needed, arrange a separate sharing method with Nomad Consulting.</p>
+            </div>
+            <div class="field field-wide">
+              <label for="materials-shared">Materials attached or shared <span class="optional">(document names or viewable links)</span></label>
+              <textarea id="materials-shared" name="Materials attached or shared" maxlength="4000" placeholder="List document names or paste viewable share links. Do not include client case files or sensitive personal information."></textarea>
+            </div>
+            <div class="field field-wide">
+              <label for="materials-missing">Items not available yet and expected date <span class="optional">(optional)</span></label>
+              <textarea id="materials-missing" name="Items not available yet and expected date" maxlength="2000"></textarea>
+            </div>
+          </div>
+          <div class="privacy-note">
+            <strong>Protect sensitive information</strong>
+            <p>Please do not submit client-level case files, medical details, Social Security numbers, or other sensitive personal information. Organization-level information is sufficient.</p>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section" id="confirmation">
+          <legend>6. Scope and accuracy confirmation</legend>
+          <p class="section-intro">Each confirmation is required to submit the intake.</p>
+          <div class="terms-list">
+            <label class="checkbox-option"><input type="checkbox" name="Scope and accuracy confirmation" value="Information is accurate and current to the best of my knowledge" required><span>I confirm the information provided is accurate and current to the best of my knowledge.</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="Scope and accuracy confirmation" value="Authorized to share organization-level materials for Funder-Fit research" required><span>I am authorized to share these organization-level materials for the Funder-Fit research.</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="Scope and accuracy confirmation" value="One program area and up to 25 screened funders; fewer may be delivered when fewer strong matches are supported by evidence" required><span>I understand this package covers one program area and up to 25 screened funders. Fewer may be delivered when fewer strong matches are supported by evidence.</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="Scope and accuracy confirmation" value="Grant writing and application submission are excluded; funding is not guaranteed" required><span>I understand grant writing and application submission are excluded, and funding is not guaranteed.</span></label>
+            <label class="checkbox-option"><input type="checkbox" name="Scope and accuracy confirmation" value="10-business-day delivery clock begins when intake is complete" required><span>I understand the 10-business-day delivery clock begins when the intake is complete.</span></label>
+          </div>
+          <div class="field-grid" style="margin-top:22px">
+            <div class="field">
+              <label for="authorized-rep">Authorized representative name and title</label>
+              <input id="authorized-rep" name="Authorized representative name and title" type="text" autocomplete="name" maxlength="180" required>
+            </div>
+            <div class="field">
+              <label for="confirmation-date">Date</label>
+              <input id="confirmation-date" name="Confirmation date" type="date" required>
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="privacy-note">
+          <strong>Submission and retention</strong>
+          <span>Your text-only intake is processed by <a href="https://formsubmit.co/documentation" target="_blank" rel="noopener noreferrer">FormSubmit</a> and delivered to Nomad Consulting's designated inbox. FormSubmit retains form submissions for 30 days. Supporting documents that cannot be shared by viewable link can be arranged separately with Nomad Consulting.</span>
+        </p>
+
+        <div class="submit-row">
+          <button class="button" type="submit">Submit Funder-Fit intake</button>
+          <p class="submit-help">You may be asked to complete a brief spam check before your submission is sent. If you encounter an error, use the <a href="/#inquiry">short inquiry form</a> for help before retrying.</p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="/" aria-label="Back to Funder-Fit overview">
+        <img src="/assets/nomad-consulting-logo-white.png" alt="Nomad Consulting" width="190" height="213" loading="lazy" decoding="async">
+      </a>
+      <p>Practical research. Clearer fundraising decisions.</p>
+    </div>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('submitted') === '1') {
+      const notice = document.getElementById('submission-success');
+      notice.hidden = false;
+      notice.focus({ preventScroll: true });
+      window.history.replaceState({}, '', window.location.pathname + '#submission-success');
+    }
+
+  </script>
+</body>
+</html>

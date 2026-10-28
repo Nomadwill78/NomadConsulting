@@ -134,6 +134,10 @@
     .pilot-badge span { display: block; line-height: 1.35; }
     .pilot-note { max-width: var(--page-width); margin: 18px auto 0; color: var(--muted); text-align: center; }
     .pilot-note strong { color: var(--navy); }
+    .intake-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 24px; padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--soft); }
+    .intake-link p { margin: 0; color: var(--muted); }
+    .intake-link p strong { color: var(--navy); }
+    .intake-link .button { flex: 0 0 auto; white-space: nowrap; }
 
     .button-pilot { margin-top: 22px; color: var(--navy); background: var(--white); }
     .button-pilot:hover { opacity: .88; }
@@ -381,6 +385,10 @@
           <div class="pilot-badge"><div><strong>$697</strong><span>one-time fee</span></div></div>
         </div>
         <p class="pilot-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome.</p>
+        <div class="intake-link">
+          <p><strong>Already purchased?</strong> Complete the Funder-Fit client intake to begin the research process.</p>
+          <a class="button button-secondary" href="/intake.html">Complete client intake</a>
+        </div>
         <div class="inquiry-panel" id="inquiry">
           <div class="inquiry-copy">
             <div class="eyebrow">Questions before you purchase?</div>
