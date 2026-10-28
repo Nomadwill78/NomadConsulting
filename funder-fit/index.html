@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163b36">
+  <meta name="description" content="A source-linked funder-fit research sprint for small and midsized nonprofits. Get a focused shortlist, giving evidence, and practical next steps.">
+  <title>Funder-Fit Research Sprint | Nomad Consulting</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18332f;
+      --ink-soft: #36534e;
+      --muted: #526761;
+      --paper: #f7f5ef;
+      --white: #fffefa;
+      --line: #deded3;
+      --green: #1b4a42;
+      --green-deep: #153b35;
+      --green-pale: #e6eee8;
+      --gold: #d5a44f;
+      --gold-pale: #f2e6ce;
+      --shadow: 0 22px 58px rgba(26, 53, 47, .12);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --page-width: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--page-width), calc(100% - 48px)); margin-inline: auto; }
+    .topbar { padding: 22px 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 750; letter-spacing: -.025em; }
+    .brand-mark {
+      display: grid; width: 42px; height: 42px; place-items: center; border-radius: 14px;
+      color: var(--white); background: var(--green); box-shadow: 0 7px 18px rgba(27, 74, 66, .2);
+    }
+    .brand-mark svg { width: 23px; height: 23px; }
+    .brand-name { font-size: 18px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: var(--ink-soft); text-decoration: none; font-weight: 600; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-cta { padding: 11px 18px; border: 1px solid #b6c6bd; border-radius: 999px; color: var(--green); }
+
+    .hero { padding: 48px 0 68px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr); align-items: center; gap: 62px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-weight: 750; letter-spacing: .105em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; display: inline-block; width: 26px; height: 2px; background: var(--gold); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 700px; margin: 20px 0 19px; font-size: clamp(44px, 5.8vw, 72px); line-height: 1.04; letter-spacing: -.055em; font-weight: 760; }
+    .hero-copy { max-width: 650px; margin-bottom: 28px; color: var(--muted); font-size: 19px; line-height: 1.65; }
+    .hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 22px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 13px 21px; border-radius: 999px; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: var(--white); background: var(--green); box-shadow: 0 9px 22px rgba(27, 74, 66, .18); }
+    .button-primary:hover { background: var(--green-deep); }
+    .button-secondary { color: var(--green); background: transparent; border: 1px solid #b8c4bb; }
+    .button-secondary:hover { background: var(--green-pale); }
+    .button svg { width: 18px; height: 18px; }
+    .hero-note { margin: 0; color: var(--muted); }
+    .hero-note strong { color: var(--ink); }
+
+    .visual-wrap { position: relative; min-height: 500px; display: grid; place-items: center; isolation: isolate; }
+    .visual-wrap::before, .visual-wrap::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; }
+    .visual-wrap::before { width: 400px; height: 400px; top: 34px; right: 5px; background: #e9e9d9; }
+    .visual-wrap::after { width: 110px; height: 110px; left: 12px; bottom: 16px; background: var(--gold-pale); }
+    .orbit { position: absolute; width: 440px; height: 300px; right: 5px; top: 95px; border: 1px solid rgba(27, 74, 66, .16); border-radius: 50%; transform: rotate(-25deg); }
+    .orbit::after { content: ""; position: absolute; inset: 23px -14px; border: 1px solid rgba(27, 74, 66, .11); border-radius: 50%; }
+    .report-card { width: min(100%, 435px); padding: 28px; border: 1px solid rgba(24, 51, 47, .08); border-radius: 24px; background: var(--white); box-shadow: var(--shadow); transform: rotate(-2deg); }
+    .report-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 21px; border-bottom: 1px solid var(--line); }
+    .report-label { display: flex; align-items: center; gap: 10px; font-weight: 740; }
+    .report-icon { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 13px; color: var(--green); background: var(--green-pale); }
+    .report-icon svg { width: 22px; height: 22px; }
+    .status-pill { padding: 7px 12px; border-radius: 999px; color: var(--green); background: #edf4ed; font-weight: 650; }
+    .report-kicker { margin: 23px 0 5px; color: var(--muted); font-weight: 650; }
+    .report-heading { margin-bottom: 20px; font-size: 24px; line-height: 1.3; letter-spacing: -.025em; }
+    .signal-list { display: grid; gap: 11px; }
+    .signal { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+    .signal-dot { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px var(--green-pale); }
+    .signal:nth-child(2) .signal-dot { background: #bd8a32; box-shadow: 0 0 0 5px var(--gold-pale); }
+    .signal:nth-child(3) .signal-dot { background: #61847a; box-shadow: 0 0 0 5px #e2ece8; }
+    .signal-text { display: grid; gap: 1px; }
+    .signal-text strong { font-weight: 700; line-height: 1.35; }
+    .signal-text span { color: var(--muted); line-height: 1.4; }
+    .report-foot { display: flex; align-items: center; gap: 10px; margin-top: 20px; padding-top: 17px; border-top: 1px solid var(--line); color: var(--muted); }
+    .report-foot svg { flex: 0 0 auto; width: 19px; height: 19px; color: var(--green); }
+    .floating-note { position: absolute; right: -6px; bottom: 32px; max-width: 245px; padding: 16px 19px; border-radius: 16px; color: var(--white); background: var(--green); box-shadow: 0 14px 30px rgba(21, 59, 53, .2); transform: rotate(3deg); font-weight: 650; }
+    .floating-note span { display: block; margin-bottom: 3px; color: #d9c28f; font-weight: 750; }
+
+    .proof-strip { border-block: 1px solid var(--line); background: rgba(255, 254, 250, .7); }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .proof-item { display: flex; align-items: center; gap: 15px; min-height: 98px; padding: 18px 26px; }
+    .proof-item + .proof-item { border-left: 1px solid var(--line); }
+    .proof-icon { display: grid; flex: 0 0 auto; width: 42px; height: 42px; place-items: center; border-radius: 14px; color: var(--green); background: var(--green-pale); }
+    .proof-icon svg { width: 22px; height: 22px; }
+    .proof-item strong { display: block; line-height: 1.4; }
+    .proof-item span { display: block; color: var(--muted); line-height: 1.45; }
+
+    .section { padding: 94px 0; }
+    .section-head { max-width: 720px; margin-bottom: 38px; }
+    .section-head h2 { margin: 13px 0 13px; font-size: clamp(34px, 4vw, 48px); line-height: 1.12; letter-spacing: -.045em; }
+    .section-head p { margin-bottom: 0; color: var(--muted); font-size: 18px; }
+    .deliverable-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .deliverable-card { min-height: 255px; padding: 27px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--white); }
+    .deliverable-icon { display: grid; width: 48px; height: 48px; margin-bottom: 24px; place-items: center; border-radius: 15px; color: var(--green); background: var(--green-pale); }
+    .deliverable-icon svg { width: 24px; height: 24px; }
+    .deliverable-card h3 { margin-bottom: 9px; font-size: 21px; line-height: 1.3; letter-spacing: -.02em; }
+    .deliverable-card p { margin: 0; color: var(--muted); }
+
+    .process { background: var(--green-deep); color: var(--white); }
+    .process .eyebrow { color: #e6cf9f; }
+    .process .section-head p { color: #d3dfd8; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid rgba(255, 255, 255, .24); }
+    .step { padding: 28px 28px 0 0; }
+    .step + .step { padding-left: 27px; border-left: 1px solid rgba(255, 255, 255, .24); }
+    .step-number { display: inline-grid; width: 42px; height: 42px; margin-bottom: 22px; place-items: center; border-radius: 50%; color: var(--green-deep); background: var(--gold-pale); font-weight: 800; }
+    .step h3 { margin-bottom: 10px; font-size: 22px; letter-spacing: -.02em; }
+    .step p { margin: 0; color: #d3dfd8; }
+
+    .fit-layout { display: grid; grid-template-columns: .88fr 1.12fr; align-items: center; gap: 70px; }
+    .fit-layout .section-head { margin-bottom: 0; }
+    .fit-checks { display: grid; gap: 12px; }
+    .fit-check { display: flex; gap: 14px; align-items: flex-start; padding: 17px 19px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+    .checkmark { display: grid; flex: 0 0 auto; width: 27px; height: 27px; place-items: center; border-radius: 50%; color: var(--green); background: var(--green-pale); }
+    .checkmark svg { width: 15px; height: 15px; }
+    .fit-check p { margin: 0; color: var(--ink-soft); }
+    .fit-check strong { color: var(--ink); }
+
+    .pilot { padding: 0 0 90px; }
+    .pilot-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 38px; padding: 46px 50px; border-radius: var(--radius-lg); color: var(--white); background: var(--green); box-shadow: var(--shadow); }
+    .pilot-panel .eyebrow { color: #edcf8d; }
+    .pilot-panel h2 { max-width: 700px; margin: 13px 0 12px; font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -.04em; }
+    .pilot-panel p { max-width: 720px; margin: 0; color: #e1ebe4; font-size: 17px; }
+    .pilot-badge { display: grid; width: 156px; height: 156px; place-items: center; padding: 18px; border: 1px solid rgba(255, 255, 255, .36); border-radius: 50%; text-align: center; transform: rotate(5deg); }
+    .pilot-badge strong { display: block; color: #efd696; font-size: 34px; line-height: 1.15; }
+    .pilot-badge span { display: block; line-height: 1.35; }
+    .pilot-note { max-width: var(--page-width); margin: 18px auto 0; color: var(--muted); text-align: center; }
+    .pilot-note strong { color: var(--ink); }
+
+    .footer { padding: 27px 0 34px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer p { margin: 0; color: var(--muted); }
+    .footer a { color: var(--green); font-weight: 650; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero { padding-top: 35px; }
+      .visual-wrap { min-height: 440px; overflow: hidden; }
+      .fit-layout { grid-template-columns: 1fr; gap: 35px; }
+      .pilot-panel { grid-template-columns: 1fr auto; padding: 38px; }
+    }
+    @media (max-width: 680px) {
+      .wrap { width: min(100% - 34px, var(--page-width)); }
+      .topbar { padding: 16px 0; }
+      .nav { align-items: flex-start; }
+      .nav-links { gap: 15px; flex-wrap: wrap; justify-content: flex-end; }
+      .nav-links a { display: none; }
+      .nav-links .nav-cta { display: inline-flex; padding: 9px 14px; }
+      .hero { padding: 34px 0 48px; }
+      h1 { font-size: clamp(42px, 12vw, 58px); }
+      .hero-copy { font-size: 18px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .button { width: 100%; }
+      .visual-wrap { min-height: 400px; margin-inline: -5px; overflow: hidden; }
+      .visual-wrap::before { width: 310px; height: 310px; right: 12px; top: 36px; }
+      .orbit { width: 330px; height: 225px; right: 0; top: 82px; }
+      .report-card { padding: 21px; }
+      .report-heading { font-size: 22px; }
+      .floating-note { right: 0; bottom: 11px; max-width: 225px; }
+      .proof-grid { grid-template-columns: 1fr; padding-block: 8px; }
+      .proof-item { min-height: 78px; padding: 13px 4px; }
+      .proof-item + .proof-item { border-left: 0; border-top: 1px solid var(--line); }
+      .section { padding: 68px 0; }
+      .section-head { margin-bottom: 28px; }
+      .section-head p { font-size: 17px; }
+      .deliverable-grid { grid-template-columns: 1fr; }
+      .deliverable-card { min-height: 0; padding: 24px; }
+      .deliverable-icon { margin-bottom: 18px; }
+      .steps { grid-template-columns: 1fr; }
+      .step, .step + .step { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255, 255, 255, .24); }
+      .step:last-child { border-bottom: 0; }
+      .step-number { margin-bottom: 14px; }
+      .pilot { padding-bottom: 62px; }
+      .pilot-panel { grid-template-columns: 1fr; gap: 25px; padding: 29px 24px; }
+      .pilot-badge { width: 128px; height: 128px; }
+      .pilot-badge strong { font-size: 29px; }
+      .pilot-note { padding-inline: 4px; text-align: left; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Nomad Consulting home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 18V6l14 12V6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand-name">Nomad Consulting</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#deliverables">What you get</a>
+        <a href="#process">How it works</a>
+        <a class="nav-cta" href="#pilot">Explore the pilot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Funder-fit research sprint</div>
+          <h1>Find funders that fit the work you already do.</h1>
+          <p class="hero-copy">A focused, source-linked shortlist for small and midsized grassroots nonprofits, matched to your mission, programs, geography, and eligibility.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#pilot">Explore the paid pilot
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button button-secondary" href="#deliverables">See what you receive</a>
+          </div>
+          <p class="hero-note"><strong>AI-assisted research. Human judgment. Sources you can check.</strong></p>
+        </div>
+
+        <div class="visual-wrap" aria-label="Illustrative preview of the funder-fit research process">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="report-card">
+            <div class="report-top">
+              <div class="report-label">
+                <span class="report-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3.75h8.5L19 8.3v11.95H6V3.75Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 4v5h5M9 13h7M9 16.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </span>
+                Research brief
+              </div>
+              <span class="status-pill">Source-linked</span>
+            </div>
+            <p class="report-kicker">A decision-ready shortlist</p>
+            <h2 class="report-heading">Every prospect gets checked against your organization.</h2>
+            <div class="signal-list">
+              <div class="signal"><span class="signal-dot" aria-hidden="true"></span><span class="signal-text"><strong>Mission and program fit</strong><span>Does the giving match your work?</span></span></div>
+              <div class="signal"><span class="signal-dot" aria-hidden="true"></span><span class="signal-text"><strong>Eligibility and geography</strong><span>Can your organization apply?</span></span></div>
+              <div class="signal"><span class="signal-dot" aria-hidden="true"></span><span class="signal-text"><strong>Past-giving evidence</strong><span>What does the public record show?</span></span></div>
+            </div>
+            <div class="report-foot">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Recommendations include practical next steps.</span>
+            </div>
+          </div>
+          <div class="floating-note"><span>Built for clarity</span>Research you can review and act on.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof-strip" aria-label="Service approach">
+      <div class="wrap proof-grid">
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5.5h16v13H4zM8 9h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><strong>25+ years in nonprofit leadership</strong><span>Experienced human review</span></div>
+        </div>
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h10M7 8h10M5 12h14M7 16h10M9 20h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+          <div><strong>Evidence behind each recommendation</strong><span>Source links, not just names</span></div>
+        </div>
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3.5 19 6v5.2c0 4.4-2.8 7.5-7 9.3-4.2-1.8-7-4.9-7-9.3V6l7-2.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <div><strong>No promise of a grant award</strong><span>Better targeting, not guarantees</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="deliverables">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">The useful part</div>
+          <h2>From a long search to a shortlist you can evaluate.</h2>
+          <p>Get practical research that helps your team decide where to spend its limited fundraising time.</p>
+        </div>
+        <div class="deliverable-grid">
+          <article class="deliverable-card">
+            <span class="deliverable-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16v14H4zM8 9h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>A matched funder shortlist</h3>
+            <p>Prospects screened against your mission, programs, service area, and stated eligibility criteria.</p>
+          </article>
+          <article class="deliverable-card">
+            <span class="deliverable-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 3.75h8.5L19 8.3v11.95H6V3.75Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 4v5h5M9 13h7M9 16.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <h3>Evidence and source links</h3>
+            <p>Clear references for eligibility, geography, giving priorities, and publicly available past-giving information.</p>
+          </article>
+          <article class="deliverable-card">
+            <span class="deliverable-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 18.5h14M7 15l3-3 2.5 2.5L18 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.5 8H18v3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>Recommended next steps</h3>
+            <p>A practical view of what to verify, where a conversation may help, and what your team could do next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">A clear process</div>
+          <h2>Technology speeds the search. Experience checks the fit.</h2>
+          <p>AI helps accelerate discovery and drafting. Damon applies more than 25 years of nonprofit leadership experience to check the sources, assess fit, and make the findings useful to your team.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <span class="step-number">1</span>
+            <h3>Share your context</h3>
+            <p>Outline your mission, programs, service area, organization profile, and current funding priorities.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">2</span>
+            <h3>Research and screen</h3>
+            <p>Damon reviews source evidence, checks the reasoning, and flags uncertainty across alignment, eligibility, geography, and past giving.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">3</span>
+            <h3>Review your next moves</h3>
+            <p>Receive a source-linked shortlist with practical notes to help your team prioritize follow-up.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="wrap fit-layout">
+        <div class="section-head">
+          <div class="eyebrow">Designed for your reality</div>
+          <h2>Start with the organization you are, not a generic profile.</h2>
+          <p>The strongest leads are the ones your team can verify and pursue with a clear rationale.</p>
+        </div>
+        <div class="fit-checks">
+          <div class="fit-check"><span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>Small and midsized grassroots nonprofits</strong><br>Research sized for teams that need focus and usable next steps.</p></div>
+          <div class="fit-check"><span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>Program and mission alignment</strong><br>Prospects are evaluated against what your organization actually delivers.</p></div>
+          <div class="fit-check"><span class="checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><p><strong>Human review with transparent evidence</strong><br>Use the linked sources to check fit and decide what merits follow-up.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pilot" id="pilot">
+      <div class="wrap">
+        <div class="pilot-panel">
+          <div>
+            <div class="eyebrow">Pilot opportunity</div>
+            <h2>Test a more focused approach to funder research.</h2>
+            <p>Nomad Consulting is inviting five nonprofit organizations to explore a paid pilot of the funder-fit research sprint. The scope and fee will be agreed before work begins.</p>
+          </div>
+          <div class="pilot-badge"><div><strong>5</strong><span>nonprofit pilot partners</span></div></div>
+        </div>
+        <p class="pilot-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome. Pilot conversations can begin through your existing Nomad Consulting contact channel.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 18V6l14 12V6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="brand-name">Nomad Consulting</span>
+      </a>
+      <p>Practical research. Clearer fundraising decisions.</p>
+    </div>
+  </footer>
+</body>
+</html>
