@@ -1,1 +1,8 @@
-IyBOb21hZENvbnN1bHRpbmcKClJlcG8gZm9yIE5vbWFkIENvbnN1bHRpbmcgd2ViIHByb2plY3RzLgoKIyMgV2hhdCBsaXZlcyBoZXJlCgotIGBmdW5kZXItZml0L2Ag4oCdIEZ1bmRlci1GaXQgUmVzZWFyY2ggU3ByaW50LCB0aGUgJDY5NyBncmFudCBwcm9zcGVjdCByZXNlYXJjaCBwYWNrYWdlIHNpdGUgKGxhbmRpbmcgcGFnZSBwbHVzIGNsaWVudCBpbnRha2UpLiBMaXZlIGF0IG5vbWFkLWZ1bmRlci1maXQtc3ByaW50LnZlcmNlbC5hcHAuCi0gYE1hY2hJVkAg4oCdIE1BQ0ggSVYgUmF0aW5nLCBhIHNpbmdsZS1wYWdlIE1hY2ggSVYgYXNzZXNzbWVudCBpbiBvbmUgSFRNTCBmaWxlLgo=
+# NomadConsulting
+
+Repo for Nomad Consulting web projects.
+
+## What lives here
+
+- `funder-fit/`: Funder-Fit Research Sprint, the $697 grant prospect research package site (landing page plus client intake). Live at nomad-funder-fit-sprint.vercel.app.
+- `MachIV/`: MACH IV Rating, a single-page Mach IV assessment in one HTML file.
