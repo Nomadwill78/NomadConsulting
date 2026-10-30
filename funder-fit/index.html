@@ -123,24 +123,24 @@
     .fit-check p { margin: 0; color: var(--muted); }
     .fit-check strong { color: var(--navy); }
 
-    .pilot { padding: 0 0 90px; }
-    .pilot-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 38px; padding: 46px 50px; border-radius: var(--radius-lg); color: var(--white); background: var(--navy); box-shadow: var(--shadow); }
-    .pilot-panel .eyebrow { color: var(--white); }
-    .pilot-panel .eyebrow::before { background: var(--white); }
-    .pilot-panel h2 { max-width: 700px; margin: 13px 0 12px; font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -.04em; }
-    .pilot-panel p { max-width: 720px; margin: 0; color: rgba(255, 255, 255, .86); font-size: 17px; }
-    .pilot-badge { display: grid; width: 156px; height: 156px; place-items: center; padding: 18px; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; text-align: center; }
-    .pilot-badge strong { display: block; color: var(--white); font-size: 34px; line-height: 1.15; }
-    .pilot-badge span { display: block; line-height: 1.35; }
-    .pilot-note { max-width: var(--page-width); margin: 18px auto 0; color: var(--muted); text-align: center; }
-    .pilot-note strong { color: var(--navy); }
+    .service { padding: 0 0 90px; }
+    .service-panel { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 38px; padding: 46px 50px; border-radius: var(--radius-lg); color: var(--white); background: var(--navy); box-shadow: var(--shadow); }
+    .service-panel .eyebrow { color: var(--white); }
+    .service-panel .eyebrow::before { background: var(--white); }
+    .service-panel h2 { max-width: 700px; margin: 13px 0 12px; font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -.04em; }
+    .service-panel p { max-width: 720px; margin: 0; color: rgba(255, 255, 255, .86); font-size: 17px; }
+    .service-badge { display: grid; width: 156px; height: 156px; place-items: center; padding: 18px; border: 1px solid rgba(255, 255, 255, .7); border-radius: 50%; text-align: center; }
+    .service-badge strong { display: block; color: var(--white); font-size: 34px; line-height: 1.15; }
+    .service-badge span { display: block; line-height: 1.35; }
+    .service-note { max-width: var(--page-width); margin: 18px auto 0; color: var(--muted); text-align: center; }
+    .service-note strong { color: var(--navy); }
     .intake-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 24px; padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--soft); }
     .intake-link p { margin: 0; color: var(--muted); }
     .intake-link p strong { color: var(--navy); }
     .intake-link .button { flex: 0 0 auto; white-space: nowrap; }
 
-    .button-pilot { margin-top: 22px; color: var(--navy); background: var(--white); }
-    .button-pilot:hover { opacity: .88; }
+    .button-service { margin-top: 22px; color: var(--navy); background: var(--white); }
+    .button-service:hover { opacity: .88; }
     .inquiry-panel { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: 42px; margin-top: 36px; padding: 42px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--white); scroll-margin-top: 24px; }
     .inquiry-copy h3 { margin: 15px 0 14px; font-size: 30px; line-height: 1.2; letter-spacing: -.035em; }
     .inquiry-copy p { margin-bottom: 0; color: var(--muted); }
@@ -158,7 +158,7 @@
     .form-trap { display: none; }
     button.button { border: 0; font-family: inherit; font-size: 16px; line-height: 1.65; cursor: pointer; }
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
-    .topbar a:focus-visible, .process a:focus-visible, .pilot-panel a:focus-visible, .footer a:focus-visible { outline-color: var(--white); }
+    .topbar a:focus-visible, .process a:focus-visible, .service-panel a:focus-visible, .footer a:focus-visible { outline-color: var(--white); }
     .inquiry-success { margin-bottom: 24px; padding: 20px; border: 1px solid var(--navy); border-radius: 14px; background: var(--soft); }
     .inquiry-success strong { display: block; margin-bottom: 6px; font-size: 20px; }
     .inquiry-success p { margin: 0; color: var(--muted); }
@@ -173,7 +173,7 @@
       .hero { padding-top: 54px; }
       .visual-wrap { padding: 24px; }
       .fit-layout { grid-template-columns: 1fr; gap: 35px; }
-      .pilot-panel { grid-template-columns: 1fr auto; padding: 38px; }
+      .service-panel { grid-template-columns: 1fr auto; padding: 38px; }
       .inquiry-panel { grid-template-columns: 1fr; gap: 28px; padding: 36px; }
     }
     @media (max-width: 680px) {
@@ -210,11 +210,11 @@
       .step, .step + .step { padding: 24px 0; border-left: 0; border-bottom: 1px solid rgba(255, 255, 255, .42); }
       .step:last-child { border-bottom: 0; }
       .step-number { margin-bottom: 14px; }
-      .pilot { padding-bottom: 62px; }
-      .pilot-panel { grid-template-columns: 1fr; gap: 25px; padding: 29px 24px; }
-      .pilot-badge { width: 128px; height: 128px; }
-      .pilot-badge strong { font-size: 29px; }
-      .pilot-note { padding-inline: 4px; text-align: left; }
+      .service { padding-bottom: 62px; }
+      .service-panel { grid-template-columns: 1fr; gap: 25px; padding: 29px 24px; }
+      .service-badge { width: 128px; height: 128px; }
+      .service-badge strong { font-size: 29px; }
+      .service-note { padding-inline: 4px; text-align: left; }
       .inquiry-panel { margin-top: 28px; padding: 26px 22px; }
       .inquiry-form { grid-template-columns: 1fr; }
       .inquiry-copy h3 { font-size: 28px; }
@@ -373,18 +373,18 @@
       </div>
     </section>
 
-    <section class="pilot" id="pilot">
+    <section class="service" id="pricing">
       <div class="wrap">
-        <div class="pilot-panel">
+        <div class="service-panel">
           <div>
             <div class="eyebrow">Funder-Fit Research</div>
             <h2>Get a source-linked shortlist, reviewed for fit.</h2>
-            <p>The first 30-day pilot is free. After the pilot, a one-time fee of $697 applies for up to 25 screened funders for one nonprofit program area, with source links and fit notes. Grant writing and submissions are not included.</p>
-            <a class="button button-pilot" href="https://buy.stripe.com/6oU7sN0PU2JO25M6HU8ww0h">Purchase for $697</a>
+            <p>For a one-time fee of $697, receive a ranked prospect tracker and concise report with source links and fit notes for one nonprofit program area, covering up to 25 screened funders. Grant writing and application submission are not included. Funding is not guaranteed.</p>
+            <a class="button button-service" href="https://buy.stripe.com/6oU7sN0PU2JO25M6HU8ww0h">Purchase for $697</a>
           </div>
-          <div class="pilot-badge"><div><strong>$697</strong><span>one-time fee</span></div></div>
+          <div class="service-badge"><div><strong>$697</strong><span>one-time fee</span></div></div>
         </div>
-        <p class="pilot-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome.</p>
+        <p class="service-note"><strong>Important:</strong> This service identifies and evaluates potential funding prospects. It does not promise a grant, award, or funding outcome.</p>
         <div class="intake-link">
           <p><strong>Already purchased?</strong> Complete the Funder-Fit client intake to begin the research process.</p>
           <a class="button button-secondary" href="/intake.html">Complete client intake</a>
